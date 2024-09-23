@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'estilos.html' %}
+</head>
+<body>
+
+{% include 'menu.html' %}
+
+<!-- 
+ <h1>{{saludo}}</h1>
+
+
+{% for dia in dias %}
+    <h3>-{{dia}}</h3>
+{% endfor %}
+
+{% for curso in cursos %}
+    {% if curso.envivo %}
+    <p>{{curso.curso}}</p>
+    <p>Profesor: {{curso.profesor}}</p>
+    {% endif %}
+{% endfor %}
+ 
+ !-->
+<div class="container mt-3">
+
+    <form method="POST" class="input-group mb-3" action="/pais/buscarpais/" >
+{% csrf_token %}
+        <input type="text" class="form-control"
+               placeholder="Ingrese nombre pais"
+               name="nombre"
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                type="submit" id="button-addon2">Buscar
+        </button>
+    </form>
+
+<table id="table" class="table">
+    <thead>
+      <tr>
+          <th>Id pais</th>
+          <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for pais in listapais %}
+            <tr>
+                <td>{{pais.idpais}}</td>
+
+                <td>{{pais.nombre}}</td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/index.js' %}"
+></script>
+</body>
+</html>
